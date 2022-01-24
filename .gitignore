@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# CPH Prob File (VSCode Extension)
+*.prob
+
 # Log file
 *.log
 

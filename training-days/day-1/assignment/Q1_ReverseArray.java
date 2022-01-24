@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Q1 {
+class Q1_ReverseArray {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
