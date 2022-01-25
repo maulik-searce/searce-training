@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": [
+        "training-days/day-1/practice",
         "training-days/day-1/assignment",
-        "training-days/day-1/practice"
+        "training-days/day-2/assignment"
     ]
 }
