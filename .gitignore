@@ -4,6 +4,8 @@
 # CPH Prob File (VSCode Extension)
 *.prob
 
+.vscode
+
 # Log file
 *.log
 
