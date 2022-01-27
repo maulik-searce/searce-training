@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.Scanner;
 
 class LinkedList<E> {
@@ -9,9 +10,14 @@ class LinkedList<E> {
         E item;
         Node<E> next;
 
-        Node(E element) {
-            item = element;
+        Node(E e) {
+            item = e;
             next = null;
+        }
+
+        Node(E e, Node<E> nextNode) {
+            this.item = e;
+            this.next = nextNode;
         }
 
         @Override
@@ -32,9 +38,26 @@ class LinkedList<E> {
         }
     }
 
-    public void add(E elem) {
+    /**
+     * Links e as first element
+     * 
+     * @param e
+     */
+    void linkFirst(E e) {
+        final Node<E> newNode = new Node<>(e, head);
+        head = newNode;
+        size++;
+    }
+
+    /**
+     * Links e as last element
+     * 
+     * @param e
+     */
+    void linkLast(E e) {
+
         final Node<E> oldTail = tail;
-        final Node<E> newNode = new Node<>(elem);
+        final Node<E> newNode = new Node<>(e);
 
         this.tail = newNode;
         if (oldTail == null) {
@@ -45,21 +68,50 @@ class LinkedList<E> {
         size++;
     }
 
-    @Override
-    public String toString() {
+    boolean add(E e) {
+        System.out.println("[INFO] : Inserting " + e + " at the end");
+        linkLast(e);
+        return true;
+    }
+
+    public void addFirst(E e) {
+        System.out.println("[INFO] : Inserting " + e + " at the first");
+        linkFirst(e);
+    }
+
+    public void addLast(E e) {
+        linkLast(e);
+    }
+
+    public E removeFirst() {
+        final E headElem = head.item;
+        head = head.next;
+        size--;
+        return headElem;
+    }
+
+    public String printLinkedList(Node<E> head) {
         StringBuilder sb = new StringBuilder();
-        sb.append("[INFO]: LIST(" + size + ") NOW - [");
+        sb.append("LIST(" + size + ") -- [");
 
         Node<E> current = head;
         while (current != null) {
             sb.append(current.item);
             current = current.next;
             if (current != null)
-                sb.append("->");
+                sb.append(" > ");
         }
         sb.append("]");
-
         return sb.toString();
+    }
+
+    public String printLinkedList() {
+        return this.printLinkedList(this.head);
+    }
+
+    @Override
+    public String toString() {
+        return this.printLinkedList();
     }
 
 }
@@ -74,7 +126,8 @@ public class LinkedListApp {
         list.add(1);
         list.add(6);
         list.add(7);
-
+        list.addFirst(10);
+        list.removeFirst();
         System.out.println(list);
 
         sc.close();
